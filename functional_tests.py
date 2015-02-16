@@ -16,15 +16,17 @@ class NewVisitorTest(unittest.TestCase):
 		self.browser.get('http://localhost:8000')
 
 		# He notices the page title and header mention to-do lists
-		self.assertIn('', self.browser.title)
+		# Fix .title & header_text later
+		self.assertIn('To-Do', self.browser.title)
 		header_text = self.browser.find_element_by_tag_name('h1').text
-		self.assertIn('', header_text)
+		self.assertIn('To-Do', header_text)
 
 		# He is invited to enter a to-do item straight away
-		inputbox = self.browser.find_element_by_id('id_new_item')
+		inputbox = self.browser.find_elements_by_id('id_new_item')
+		return inputbox
 		self.assertEqual(
-			inputbox.get_attribute('placeholder'),
-			'Enter a to-do item:'
+				inputbox.get_attribute('placeholder'),
+				'Enter a to-do item:'
 		)
 
 		# She types "Code like crazy" into a text box (Garrett's hobby is Python coding)
