@@ -36,8 +36,8 @@ class NewVisitorTest(LiveServerTestCase):
 		# She types "Code like crazy" into a text box (Garrett's hobby is Python coding)
 		inputbox.send_keys('Code like crazy')
 
-		# When he hits enter, the page updates, and now the page lists "1: Code like crazy"
-		# as an item in a to-do list
+		# When he hits enter, he is taken to a new URL, and now the page lists "1: Code like crazy"
+		# as an item in a to-do list table
 		inputbox.send_keys(Keys.ENTER)
 		garrett_list_url = self.browser.current_url
 		self.assertRegex(garrett_list_url, '/lists/.+')
@@ -69,7 +69,7 @@ class NewVisitorTest(LiveServerTestCase):
 		# Courtney starts a new list by entering a new item.
 		inputbox = self.browser.find_element_by_id('id_new_item')
 		inputbox.send_keys('Buy milk')
-		inputbox.send_keys('Keys.ENTER')
+		inputbox.send_keys(Keys.ENTER)
 		
 		# Courtney gets her own unique URL.
 		courtney_list_url = self.browser.current_url
